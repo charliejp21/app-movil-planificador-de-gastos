@@ -13,6 +13,6 @@ export const styles = StyleSheet.create({
         color: '#fff',
         textTransform: 'uppercase',
         fontWeight: 'bold',
-        paddingVertical: 20
+        paddingTop: 20
      }
 });
