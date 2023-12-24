@@ -10,6 +10,7 @@ export const globalStyles = StyleSheet.create({
     headerApp: {
 
       backgroundColor: '#3B82F6',
+      minHeight: 450
 
     },
     contenedor: {
@@ -35,7 +36,7 @@ export const globalStyles = StyleSheet.create({
         width: 60,
         height: 60,
         position: 'absolute',
-        top: 10,
-        right: 20
+        bottom: 40,
+        right: 30
       }
 })

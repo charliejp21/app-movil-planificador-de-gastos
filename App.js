@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
-import {Alert, Pressable, View, Image, Modal } from 'react-native'
+import {Alert, Pressable, View, Image, Modal, ScrollView } from 'react-native'
 import Header from './src/components/Header/Header'
 import NuevoPresupuesto from './src/components/NuevoPresupuesto/NuevoPresupuesto'
 import ControlPresupuesto from './src/components/ControlPresupuesto/ControlPresupuesto'
 import FormularioGasto from './src/components/FormularioGasto/FormularioGasto'
+import ListaGastos from './src/components/ListaGastos/ListaGastos'
 import { globalStyles } from './src/styles/index'
+import { generarId } from './src/helpers'
 
 const App = () => {
 
   const [isValidPrespuesto, setIsValidPresupuesto] = useState(false)
 
-  const [presupuesto, setPresupuesto] = useState(0)
+  const [presupuesto, setPresupuesto] = useState('')
 
   const [gastos, setGastos] = useState([])
 
@@ -29,26 +31,54 @@ const App = () => {
 
   }
 
+  const handleGasto = (gasto) => {
+
+    if(Object.values(gasto).includes('')){
+
+      return Alert.alert("Error", "Todos los campos son obligatorios")
+
+    }
+
+    gasto.id = generarId()
+
+    setGastos([...gastos, gasto])
+
+    setModal(!modal)
+
+    return Alert.alert("Gasto registrado", "Gasto registrado exitosamente")
+
+  }
+
   return (
     <View style={globalStyles.contenedorPrincipal}>
 
-      <View style={globalStyles.headerApp}>
+      <ScrollView>
 
-        <Header />
+        <View style={globalStyles.headerApp}>
 
-        {isValidPrespuesto ? 
-        
-        (<ControlPresupuesto 
-          presupuesto={presupuesto}
-          gastos={gastos}
-           />) :
+          <Header />
 
-        (<NuevoPresupuesto 
-          handleNuevoPresupuesto = {handleNuevoPresupuesto}
-          presupuesto={presupuesto}
-          setPresupuesto={setPresupuesto} />) }
+          {isValidPrespuesto ? 
+          
+          (<ControlPresupuesto 
+            presupuesto={presupuesto}
+            gastos={gastos}
+            />) :
 
-      </View>
+          (<NuevoPresupuesto 
+            handleNuevoPresupuesto = {handleNuevoPresupuesto}
+            presupuesto={presupuesto}
+            setPresupuesto={setPresupuesto} />) }
+
+        </View>
+          
+        {isValidPrespuesto && 
+
+          <ListaGastos
+           gastos={gastos} />
+        } 
+
+      </ScrollView>
 
         {modal && 
           <Modal 
@@ -59,7 +89,8 @@ const App = () => {
            }}>
 
             <FormularioGasto 
-             setModal={setModal}/>
+             setModal={setModal}
+             handleGasto={handleGasto}/>
 
           </Modal>
         }

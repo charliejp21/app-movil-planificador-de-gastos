@@ -20,7 +20,7 @@ const ControlPresupuesto = ({presupuesto, gastos}) => {
         
         setGastado(totalGastado)
 
-    }, [])
+    }, [gastos, presupuesto])
 
  
     return (
