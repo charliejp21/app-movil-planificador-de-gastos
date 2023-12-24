@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Text, SafeAreaView, View, TextInput, Pressable } from 'react-native'
 import { styles } from './FormularioGastoStyles'
 import { Picker } from '@react-native-picker/picker'
-const FormularioGasto = ({setModal}) => {
+const FormularioGasto = ({setModal, handleGasto}) => {
+
+    const [nombre, setNombre] = useState('')
+    const [cantidad, setCantidad] = useState('')
+    const [categoria, setCategoria] = useState('')
+
   return (
     
     <SafeAreaView style={styles.contenedor}>
@@ -23,7 +28,9 @@ const FormularioGasto = ({setModal}) => {
                 <Text style={styles.label}>Nombre Gasto</Text>
                 <TextInput
                 style={styles.input} 
-                placeholder='Nombre del gasto. ej. Comida'/>
+                placeholder='Nombre del gasto. ej. Comida'
+                onChangeText={setNombre}
+                value={nombre} />
             </View>
 
             <View style={styles.campo}>
@@ -31,12 +38,16 @@ const FormularioGasto = ({setModal}) => {
                 <TextInput
                 style={styles.input}  
                 placeholder='Cantidad del gasto. ej. 300'
-                keyboardType='numeric' />
+                keyboardType='numeric'
+                onChangeText={setCantidad}
+                value={cantidad} /> 
             </View>
 
             <View style={styles.campo}>
                 <Text style={styles.label}>Categoría Gasto</Text>
-                <Picker>
+                <Picker
+                 selectedValue={categoria}
+                 onValueChange={(itemValue) => {setCategoria(itemValue)}}>
                     <Picker.Item label="--Selecione --" value="" />
                     <Picker.Item label="Ahorro" value="ahorro" />
                     <Picker.Item label="Comida" value="comida" />
@@ -49,7 +60,9 @@ const FormularioGasto = ({setModal}) => {
                 </Picker>
             </View>
 
-            <Pressable style={styles.submitBtn}>
+            <Pressable 
+             style={styles.submitBtn}
+             onPress={() => handleGasto({nombre,cantidad,categoria})}>
                 <Text style={styles.submitBtnText}>Agregar Gasto</Text>
             </Pressable>
 
