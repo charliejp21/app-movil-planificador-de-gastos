@@ -53,9 +53,13 @@ const App = () => {
         {modal && 
           <Modal 
            animationType='slide'
-           visible={modal}>
+           visible={modal}
+           onRequestClose={() => {
+            setModal(!modal)
+           }}>
 
-            <FormularioGasto />
+            <FormularioGasto 
+             setModal={setModal}/>
 
           </Modal>
         }

@@ -2,14 +2,16 @@ import React from 'react'
 import { Text, SafeAreaView, View, TextInput, Pressable } from 'react-native'
 import { styles } from './FormularioGastoStyles'
 import { Picker } from '@react-native-picker/picker'
-const FormularioGasto = () => {
+const FormularioGasto = ({setModal}) => {
   return (
     
     <SafeAreaView style={styles.contenedor}>
 
         <View>
-            <Pressable>
-                <Text>Cancelar</Text>
+            <Pressable 
+             onLongPress={() => setModal(false)}
+             style={styles.btnCancelar}>
+                <Text style={styles.btnCancelarTexto}>Cancelar</Text>
             </Pressable>
         </View>
 

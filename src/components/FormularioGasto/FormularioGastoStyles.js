@@ -49,6 +49,21 @@ export const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: '700',
         textTransform: 'uppercase'
+    },
+    btnCancelar: {
+
+        backgroundColor: '#DB2777',
+        padding: 10,
+        marginTop: 30,
+        marginHorizontal: 10
+
+    },
+    btnCancelarTexto: {
+        textAlign: 'center',
+        textTransform: 'uppercase',
+        fontWeight: 'bold',
+        color: '#fff'
+
     }
 
 })
