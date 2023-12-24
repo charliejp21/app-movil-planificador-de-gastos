@@ -30,4 +30,12 @@ export const globalStyles = StyleSheet.create({
   
         elevation: 14,
       }, 
+      imgNuevoPresupuesto: {
+
+        width: 60,
+        height: 60,
+        position: 'absolute',
+        top: 10,
+        right: 20
+      }
 })
