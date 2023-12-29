@@ -40,6 +40,8 @@ const App = () => {
     }
 
     gasto.id = generarId()
+    
+    gasto.fecha = Date.now()
 
     setGastos([...gastos, gasto])
 
