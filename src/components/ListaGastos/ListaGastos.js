@@ -13,9 +13,9 @@ const ListaGastos = ({gastos}) => {
                 <Text style={styles.noGastos}>No hay gastos para mostrar</Text> : 
                 gastos.map(gasto => (
 
-                    <Gasto 
-                     key={gasto.id}
-                     gasto={gasto} /> ))
+                <Gasto 
+                  key={gasto.id}
+                  gasto={gasto} /> ))
             }
 
         </View>

@@ -10,7 +10,7 @@ export const globalStyles = StyleSheet.create({
     headerApp: {
 
       backgroundColor: '#3B82F6',
-      minHeight: 450
+      minHeight: 400
 
     },
     contenedor: {
