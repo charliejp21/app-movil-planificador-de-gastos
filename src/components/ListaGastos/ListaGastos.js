@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { styles } from './ListaGastosStyles'
 import Gasto from '../Gasto/Gasto'
-const ListaGastos = ({gastos}) => {
+const ListaGastos = ({gastos, setModal, setGasto}) => {
   return (
 
         <View style={styles.contenedorGastos}>
@@ -15,7 +15,9 @@ const ListaGastos = ({gastos}) => {
 
                 <Gasto 
                   key={gasto.id}
-                  gasto={gasto} /> ))
+                  gasto={gasto} 
+                  setModal={setModal}
+                  setGasto={setGasto} /> ))
             }
 
         </View>

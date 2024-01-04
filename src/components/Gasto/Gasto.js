@@ -4,7 +4,7 @@ import { styles } from './GastoStyles'
 import { formatearCantidad, formatearFecha } from '../../helpers'
 
 
-const Gasto = ({gasto}) => {
+const Gasto = ({gasto, setModal, setGasto}) => {
 
   const {nombre, categoria, cantidad, fecha} = gasto
 
@@ -21,29 +21,41 @@ const Gasto = ({gasto}) => {
       
   }
 
+  const handleActionGasto = () => {
+
+      setModal(true)
+      setGasto(gasto)
+
+  }
+
   return (
 
-    <View style={styles.contenedorGasto}>
+    <Pressable
+      onLongPress={handleActionGasto}>
 
-      <View style={styles.contenidoGasto}>
+      <View style={styles.contenedorGasto}>
+  
+        <View style={styles.contenidoGasto}>
 
-        <View style={styles.contendorImgGasto}>
+          <View style={styles.contendorImgGasto}>
 
-          <Image style={styles.imgGasto} source={diccionarioIconos[categoria]}/>
-          
-          <View style={styles.contendorTexto}>
-            <Text style={styles.categoria}>{categoria}</Text>
-            <Text style={styles.nombre}>{nombre}</Text>
-            <Text style={styles.fecha}>{formatearFecha(fecha)}</Text>
-          </View> 
+            <Image style={styles.imgGasto} source={diccionarioIconos[categoria]}/>
+            
+            <View style={styles.contendorTexto}>
+              <Text style={styles.categoria}>{categoria}</Text>
+              <Text style={styles.nombre}>{nombre}</Text>
+              <Text style={styles.fecha}>{formatearFecha(fecha)}</Text>
+            </View> 
+
+          </View>
+
+          <Text style={styles.cantidad}>{formatearCantidad(cantidad)}</Text>
 
         </View>
 
-        <Text style={styles.cantidad}>{formatearCantidad(cantidad)}</Text>
-
       </View>
 
-    </View>
+    </Pressable>
 
   )
 }

@@ -1,12 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text, SafeAreaView, View, TextInput, Pressable } from 'react-native'
 import { styles } from './FormularioGastoStyles'
 import { Picker } from '@react-native-picker/picker'
-const FormularioGasto = ({setModal, handleGasto}) => {
+const FormularioGasto = ({setModal, handleGasto, gasto, setGasto}) => {
 
     const [nombre, setNombre] = useState('')
     const [cantidad, setCantidad] = useState('')
     const [categoria, setCategoria] = useState('')
+    const [id, setId] = useState('')
+    const [fecha, setFecha] = useState('')
+
+    useEffect(() => {
+
+        if(gasto?.nombre) {
+
+            setNombre(gasto.nombre)
+            setCantidad(gasto.cantidad)
+            setCategoria(gasto.categoria)
+            setId(gasto.id)
+            setFecha(gasto.fecha)
+        }
+
+    }, [gasto])
 
   return (
     
@@ -14,7 +29,9 @@ const FormularioGasto = ({setModal, handleGasto}) => {
 
         <View>
             <Pressable 
-             onLongPress={() => setModal(false)}
+             onLongPress={() => {
+                setModal(false)
+                setGasto({}) }}
              style={styles.btnCancelar}>
                 <Text style={styles.btnCancelarTexto}>Cancelar</Text>
             </Pressable>
@@ -22,7 +39,7 @@ const FormularioGasto = ({setModal, handleGasto}) => {
 
         <View style={styles.formulario}>
 
-            <Text style={styles.titulo}>Nuevo Gasto</Text>
+            <Text style={styles.titulo}>{gasto?.nombre ? 'Editar Gasto' : 'Nuevo Gasto'}</Text>
 
             <View style={styles.campo}>
                 <Text style={styles.label}>Nombre Gasto</Text>
@@ -62,8 +79,8 @@ const FormularioGasto = ({setModal, handleGasto}) => {
 
             <Pressable 
              style={styles.submitBtn}
-             onPress={() => handleGasto({nombre,cantidad,categoria})}>
-                <Text style={styles.submitBtnText}>Agregar Gasto</Text>
+             onPress={() => handleGasto({nombre,cantidad,categoria, id, fecha})}>
+                <Text style={styles.submitBtnText}>{gasto?.nombre ? 'Editar Gasto' : 'Agregar Gasto'}</Text>
             </Pressable>
 
         </View>
