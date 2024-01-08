@@ -50,19 +50,33 @@ export const styles = StyleSheet.create({
         fontWeight: '700',
         textTransform: 'uppercase'
     },
+    btn: {
+
+        padding: 10,
+        marginTop: 30,
+        marginHorizontal: 10,
+        flex: 1
+
+    },
+    btnEliminar:{
+
+        backgroundColor:'red',
+
+    },
     btnCancelar: {
 
         backgroundColor: '#DB2777',
-        padding: 10,
-        marginTop: 30,
-        marginHorizontal: 10
-
     },
-    btnCancelarTexto: {
+    btnTexto: {
         textAlign: 'center',
         textTransform: 'uppercase',
         fontWeight: 'bold',
         color: '#fff'
+
+    }, 
+    contenedorBotones:{
+        flexDirection: 'row',
+        justifyContent: 'space-between'
 
     }
 

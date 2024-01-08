@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Text, SafeAreaView, View, TextInput, Pressable } from 'react-native'
 import { styles } from './FormularioGastoStyles'
 import { Picker } from '@react-native-picker/picker'
-const FormularioGasto = ({setModal, handleGasto, gasto, setGasto}) => {
+const FormularioGasto = ({setModal, handleGasto, gasto, setGasto, eliminarGasto}) => {
 
     const [nombre, setNombre] = useState('')
     const [cantidad, setCantidad] = useState('')
@@ -27,13 +27,19 @@ const FormularioGasto = ({setModal, handleGasto, gasto, setGasto}) => {
     
     <SafeAreaView style={styles.contenedor}>
 
-        <View>
+        <View style={styles.contenedorBotones}>
             <Pressable 
              onLongPress={() => {
                 setModal(false)
                 setGasto({}) }}
-             style={styles.btnCancelar}>
-                <Text style={styles.btnCancelarTexto}>Cancelar</Text>
+             style={[styles.btn, styles.btnCancelar]}>
+                <Text style={styles.btnTexto}>Cancelar</Text>
+            </Pressable>
+
+            <Pressable
+             onLongPress={() => eliminarGasto(id)} 
+             style={[styles.btn, styles.btnEliminar]}>
+                <Text style={styles.btnTexto}>Eliminar</Text>
             </Pressable>
         </View>
 
