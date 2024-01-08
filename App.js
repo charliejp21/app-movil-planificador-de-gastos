@@ -67,6 +67,24 @@ const App = () => {
 
   }
 
+  const eliminarGasto = (id) => {
+
+    Alert.alert(
+      "¿Deseas eliminar este gasto",
+      "La información no podrá recuperarse", 
+      [{text: 'No', style: 'cancel', },
+       {text: 'Sí, eliminar',
+        onPress: () => {
+          const deleteGasto = gastos.filter(gasto => gasto.id !== id)
+          setGastos(deleteGasto)
+          setModal(!modal)
+          setGasto({})
+          return Alert.alert("Gasto eliminado", "Gasto eliminado exitosamente")
+        } 
+        }])
+
+  }
+
   return (
     <View style={globalStyles.contenedorPrincipal}>
 
@@ -112,7 +130,8 @@ const App = () => {
              setModal={setModal}
              handleGasto={handleGasto}
              setGasto={setGasto} 
-             gasto={gasto} />
+             gasto={gasto}
+             eliminarGasto={eliminarGasto} />
 
           </Modal>
         }
@@ -120,6 +139,7 @@ const App = () => {
         {isValidPrespuesto && 
 
           <Pressable
+           style={globalStyles.btnAgregar}
            onPress={() => setModal(!modal)}>
 
             <Image 

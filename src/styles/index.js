@@ -35,6 +35,8 @@ export const globalStyles = StyleSheet.create({
 
         width: 60,
         height: 60,
+      }, 
+      btnAgregar: {
         position: 'absolute',
         bottom: 40,
         right: 30
