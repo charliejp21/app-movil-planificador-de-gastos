@@ -5,6 +5,7 @@ import NuevoPresupuesto from './src/components/NuevoPresupuesto/NuevoPresupuesto
 import ControlPresupuesto from './src/components/ControlPresupuesto/ControlPresupuesto'
 import FormularioGasto from './src/components/FormularioGasto/FormularioGasto'
 import ListaGastos from './src/components/ListaGastos/ListaGastos'
+import FiltroPresupuestos from './src/components/FiltroPresupuestos/FiltroPresupuestos'
 import { globalStyles } from './src/styles/index'
 import { generarId } from './src/helpers'
 
@@ -19,6 +20,10 @@ const App = () => {
   const [modal, setModal] = useState(false)
 
   const [gasto, setGasto] = useState({})
+
+  const [filtro, setFiltro] = useState('')
+
+  const [gastosFiltrados, setGastosFiltrados] = useState([])
 
   const handleNuevoPresupuesto = (presupuesto) => {
 
@@ -108,13 +113,25 @@ const App = () => {
 
         </View>
           
-        {isValidPrespuesto && 
+        {isValidPrespuesto && ( 
+
+          <>
+          
+          <FiltroPresupuestos
+            filtro={filtro} 
+            setFiltro={setFiltro}
+            gastos={gastos}
+            setGastosFiltrados={setGastosFiltrados} />
 
           <ListaGastos
            gastos={gastos}
            setModal={setModal}
-           setGasto={setGasto} />
-        } 
+           setGasto={setGasto}
+           filtro={filtro}
+           gastosFiltrados={gastosFiltrados} />
+           
+          </>
+        )} 
 
       </ScrollView>
 
