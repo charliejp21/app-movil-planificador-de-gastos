@@ -27,7 +27,7 @@ const ListaGastos = ({gastos, setModal, setGasto, filtro, gastosFiltrados}) => {
 
             ))}
 
-            {gastos.length === 0 || gastosFiltrados.length === 0 && (
+            {gastos.length === 0 || (gastosFiltrados.length === 0 && !!filtro) && (
 
               <Text style={styles.noGastos}>No hay gatos</Text>
             )
