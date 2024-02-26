@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Alert, Pressable, View, Image, Modal, ScrollView } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import Header from './src/components/Header/Header'
 import NuevoPresupuesto from './src/components/NuevoPresupuesto/NuevoPresupuesto'
 import ControlPresupuesto from './src/components/ControlPresupuesto/ControlPresupuesto'
@@ -24,6 +25,98 @@ const App = () => {
   const [filtro, setFiltro] = useState('')
 
   const [gastosFiltrados, setGastosFiltrados] = useState([])
+
+  useEffect(() => {
+
+    const obtenerPresupuesto = async () => {
+
+      try {
+
+        const presupuestoStorage = await AsyncStorage.getItem('planificador_prespuesto') ?? 0
+
+        if(presupuestoStorage > 0) {
+
+          setPresupuesto(presupuestoStorage)
+
+          setIsValidPresupuesto(true)
+        }
+        
+      } catch (error) {
+
+        console.log(error)
+        
+      }
+
+    }
+
+    obtenerPresupuesto()
+
+  }, [])
+
+  useEffect(() => {
+
+    const guardarGastosStorage = async() => {
+
+      try {
+
+        await AsyncStorage.setItem('planificador_gastos', JSON.stringify(gastos)) ?? 0
+        
+      } catch(error) {
+
+        console.log(error)
+        
+      }
+
+    }
+    
+    guardarGastosStorage()
+
+  }, [gastos])
+
+  useEffect(()=>{
+    
+    const obtenerDatosStorage = async() => {
+     
+      try {
+
+        const gastosStorage = await AsyncStorage.getItem('planificador_gastos')
+
+        setGastos(gastosStorage ? JSON.parse(gastosStorage) : [])
+        
+      } catch (error) {
+
+        console.log(error)
+        
+      }
+      
+    }
+
+    obtenerDatosStorage()
+
+  }, [])
+
+  useEffect(()=> {
+
+    if(isValidPrespuesto){
+
+      const savePresupuesto = async () => {
+
+        try {
+
+          await AsyncStorage.setItem('planificador_prespuesto', presupuesto)
+          
+        } catch (error) {
+
+          console.log(error)
+          
+        }
+      }
+      
+      savePresupuesto()
+
+    }
+
+  }, [isValidPrespuesto])
 
   const handleNuevoPresupuesto = (presupuesto) => {
 
