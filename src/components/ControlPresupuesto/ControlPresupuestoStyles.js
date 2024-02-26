@@ -28,7 +28,20 @@ export const styles = StyleSheet.create({
 
         fontWeight: '700',
         color:'#3B82F6'
+    },
+    boton:{
 
+        backgroundColor: '#DB2777',
+        padding: 10,
+        marginBottom:40, 
+        borderRadius:5
+    },
+    textoBoton:{
+
+        textAlign: 'center',
+        color: '#fff',
+        fontWeight: 'bold',
+        textTransform: 'uppercase'
 
     }
 })

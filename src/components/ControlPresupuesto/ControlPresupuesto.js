@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, Image } from 'react-native'
+import { Text, View, Image, Pressable } from 'react-native'
 import {styles} from './ControlPresupuestoStyles'
 import { globalStyles } from '../../styles'
 import { formatearCantidad } from '../../helpers'
 import CircularProgress from 'react-native-circular-progress-indicator'
 
-const ControlPresupuesto = ({presupuesto, gastos}) => {
+const ControlPresupuesto = ({presupuesto, gastos, reiniciarApp}) => {
 
     const [disponible, setDisponible] = useState(0)
 
@@ -56,6 +56,11 @@ const ControlPresupuesto = ({presupuesto, gastos}) => {
         </View>
 
         <View style={styles.contenedorTexto}>
+
+          <Pressable style={styles.boton}
+            onLongPress={reiniciarApp}>
+            <Text style={styles.textoBoton}>Reinicar APP</Text>
+          </Pressable>
 
           <Text style={styles.valor}>
             <Text style={styles.label}>Presupuesto: </Text>
